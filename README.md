@@ -38,10 +38,16 @@ Enter the password: admin123
 The project uses a simple and flat file structure for ease of use.
 
 blood-bank-project/
+
 ├── index.html         (Donor Registration Page)
+
 ├── request.html       (Blood Request Page)
+
 ├── admin.html         (Admin Panel)
+
 ├── style.css          (All Styles and Animations)
+
 └── script.js          (All Application Logic)
+
 ⚠️ Important Limitation
 This project uses localStorage, which means all data (donors and requests) is stored locally within your specific web browser. It is a simulation of a full-stack application and the data cannot be accessed from another computer or a different browser. The "user" and the "admin" must be using the same browser on the same machine to see the data.
