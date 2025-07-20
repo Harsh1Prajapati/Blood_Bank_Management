@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bank - Request Blood</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+             <div class="header-content">
+                <svg class="header-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM382.2 193.4c-9-34.5-35.3-61.8-69.8-69.8C273.8 114.6 240 102.6 240 72c0-9.2-3.1-17.7-8.5-24.5s-13-10.8-22.1-12.2c-15.5-2.4-30.8 7.5-34.9 22.1C170.1 72.9 160 91.5 160 112c0 30.6 12.6 64.4 21.6 103c9 34.5 35.3 61.8 69.8 69.8c38.6 9 72.4 21.1 72.4 51.1c0 9.2 3.1 17.7 8.5 24.5s13 10.8 22.1 12.2c15.5 2.4 30.8-7.5 34.9-22.1c4.5-15.4 14.6-34 14.6-54.9c0-30.6-12.6-64.4-21.6-103z"/></svg>
+                <h1>Blood Request Service</h1>
+            </div>
+            <nav>
+                <a href="index.html" class="nav-link">Become a Donor</a>
+                <a href="request.html" class="nav-link active">Request Blood</a>
+                <a href="admin.html" class="nav-link">Admin Panel</a>
+            </nav>
+        </header>
+        <main class="content">
+            <div class="form-container">
+                <form id="request-form">
+                    <h2>Urgent Blood Request</h2>
+                    <p>Please provide the details for the blood request.</p>
+                    <div class="form-group">
+                        <label for="patient-name">Patient Name</label>
+                        <input type="text" id="patient-name" required placeholder="e.g., Jane Smith">
+                    </div>
+                    <div class="form-group">
+                        <label for="request-blood-group">Required Blood Group</label>
+                        <select id="request-blood-group" required>
+                            <option value="" disabled selected>Select blood group</option>
+                            <option value="A+">A+</option><option value="A-">A-</option>
+                            <option value="B+">B+</option><option value="B-">B-</option>
+                            <option value="AB+">AB+</option><option value="AB-">AB-</option>
+                            <option value="O+">O+</option><option value="O-">O-</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-info">Hospital/Contact Info</label>
+                        <input type="text" id="contact-info" required placeholder="e.g., City Hospital, Ward 5">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                </form>
+            </div>
+        </main>
+    </div>
+    <div id="toast-notification" class="toast"></div>
+    <script src="script.js"></script>
+</body>
+</html>
