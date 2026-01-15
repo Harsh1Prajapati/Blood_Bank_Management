@@ -65,13 +65,13 @@ This project is developed using **Flask (Python)** for the backend, **SQLite** f
 ```
 Blood_Bank_Management/
 │
-├── app.py                     # Flask backend
-├── bloodbank.db               # SQLite database
-├── README.md                  # Documentation
+├── app.py                     
+├── bloodbank.db               
+├── README.md                  
 │
 ├── static/
-│   ├── style.css              # Styles
-│   ├── script.js              # JavaScript logic
+│   ├── style.css              
+│   ├── script.js              
 │   ├── hosp_1.jpg
 │   ├── hosp_2.jpg
 │   ├── hosp_3.jpg
@@ -176,7 +176,3 @@ Contributions are welcome! Fork the repository, raise issues, or submit pull req
 📜 License
 
 This project is developed for educational purposes.
-
----
-
-Bolo kya chahiye — main sab ready kar deta hoon 🚀🔥
