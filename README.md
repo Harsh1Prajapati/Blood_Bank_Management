@@ -6,7 +6,7 @@ This project is developed using **Flask (Python)** for the backend, **SQLite** f
 
 ---
 
-#🚀 Features
+🚀 Features
 
 👤 User Module
 
