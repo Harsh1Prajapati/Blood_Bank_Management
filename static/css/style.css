@@ -1,0 +1,519 @@
+/* ================= CSS VARIABLES ================= */
+:root {
+    --primary: #7e5bef;
+    --primary-hover: #a78bfa;
+    --white: #ffffff;
+    --muted: #6b7280;
+    --bg-gradient-start: #f7f5ff;
+    --bg-gradient-mid: #f3e8ff;
+    --bg-gradient-end: #f9f7ff;
+    --card: #ffffff;
+    --border: #e5e7eb;
+    --radius: 10px;
+    --shadow: 0 8px 28px rgba(0,0,0,0.09);
+    --shadow-hover: 0 14px 40px rgba(34,34,34,0.12);
+    --font: 'Poppins', sans-serif;
+}
+
+/* ================= GLOBAL RESET ================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font);
+    background: linear-gradient(180deg, var(--bg-gradient-start), var(--bg-gradient-mid), var(--bg-gradient-end));
+    min-height: 100vh;
+    color: #222;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.01); }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ================= HEADER ================= */
+.site-header {
+    background: linear-gradient(90deg, var(--primary), var(--primary-hover));
+    color: var(--white);
+    padding: 16px 0;
+    box-shadow: 0 4px 20px rgba(126, 91, 239, 0.2);
+    animation: fadeInDown 0.6s ease-out;
+}
+
+.header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s;
+}
+
+.brand-link:hover {
+    transform: scale(1.02);
+}
+
+.brand-icon {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+}
+
+.brand-icon i {
+    font-size: 28px;
+}
+
+.brand-text strong {
+    font-size: 18px;
+    display: block;
+    font-weight: 700;
+}
+
+.brand-text .tag {
+    font-size: 12px;
+    opacity: 0.9;
+    display: block;
+}
+
+/* ================= NAVIGATION ================= */
+.main-nav {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.nav-item {
+    color: rgba(255, 255, 255, 0.95);
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s;
+    opacity: 0;
+    animation: fadeInDown 0.4s ease-out forwards;
+}
+
+.nav-item:nth-child(1) { animation-delay: 0.3s; }
+.nav-item:nth-child(2) { animation-delay: 0.4s; }
+.nav-item:nth-child(3) { animation-delay: 0.5s; }
+.nav-item:nth-child(4) { animation-delay: 0.6s; }
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+}
+
+/* ================= MAIN CONTENT ================= */
+.main-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 20px;
+}
+
+/* ================= PANELS & CARDS ================= */
+.panel {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.panel:nth-child(1) { animation-delay: 0.2s; }
+.panel:nth-child(2) { animation-delay: 0.7s; }
+
+.panel h2 {
+    color: var(--primary);
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 24px;
+    opacity: 0;
+    animation: fadeIn 0.4s ease-out 0.4s forwards;
+}
+
+.muted {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+/* ================= GRID LAYOUT ================= */
+.grid-two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.card:nth-child(1) {
+    animation: fadeInLeft 0.5s ease-out 0.5s forwards;
+}
+
+.card:nth-child(2) {
+    animation: fadeInRight 0.5s ease-out 0.6s forwards;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.card h3 {
+    color: var(--primary);
+    margin-bottom: 16px;
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ================= CARD LINKS ================= */
+.card-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 8px;
+    background: #f3e8ff;
+    border: 1px solid #d8b4fe;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.card-link:hover {
+    background: #e9d5ff;
+    transform: translateX(5px);
+}
+
+.card-link i {
+    font-size: 20px;
+    transition: transform 0.2s;
+}
+
+.card-link:hover i {
+    transform: scale(1.1);
+}
+
+/* ================= NOTICE SECTION ================= */
+.notice-content {
+    opacity: 0;
+    animation: fadeIn 0.4s ease-out 0.8s forwards;
+}
+
+.notice-message {
+    color: #d9534f;
+    font-weight: 600;
+    margin-bottom: 8px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.notice-date {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.notice-date i {
+    font-size: 14px;
+}
+
+/* ================= HOSPITAL SLIDER ================= */
+.hospital-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary);
+    margin-bottom: 16px;
+}
+
+.hospital-header i {
+    font-size: 24px;
+}
+
+.hospital-slider-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.hospital-slider {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 8px;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-hover) transparent;
+}
+
+.hospital-slider::-webkit-scrollbar {
+    height: 8px;
+}
+
+.hospital-slider::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.hospital-slider::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #c4b5fd, #a78bfa);
+    border-radius: 8px;
+}
+
+/* ================= HOSPITAL CARDS ================= */
+.hospital-card {
+    min-width: 260px;
+    max-width: 260px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), #fff);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(34,34,34,0.06);
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    border: 1px solid rgba(167,139,250,0.12);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: slideInRight 0.4s ease-out forwards;
+}
+
+.hospital-card:nth-child(1) { animation-delay: 0.8s; }
+.hospital-card:nth-child(2) { animation-delay: 0.9s; }
+.hospital-card:nth-child(3) { animation-delay: 1s; }
+.hospital-card:nth-child(4) { animation-delay: 1.1s; }
+.hospital-card:nth-child(5) { animation-delay: 1.2s; }
+.hospital-card:nth-child(6) { animation-delay: 1.3s; }
+
+.hospital-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 16px 48px rgba(34,34,34,0.15);
+}
+
+.card-media {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    background: #f3e8ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.hospital-card:hover .card-media img {
+    transform: scale(1.1);
+}
+
+.card-body {
+    padding: 14px;
+}
+
+.card-body h4 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    color: var(--primary);
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.hospital-card:hover .card-body h4 {
+    color: var(--primary-hover);
+}
+
+.card-body p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* ================= SLIDER ARROWS ================= */
+.slider-arrow {
+    background: rgba(255,255,255,0.95);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: var(--primary);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.slider-arrow:hover {
+    background: linear-gradient(90deg, var(--primary), var(--primary-hover));
+    color: #fff;
+    transform: translateY(-2px) scale(1.1);
+}
+
+.slider-arrow:active {
+    transform: translateY(0) scale(0.95);
+}
+
+.small {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 12px;
+    opacity: 0;
+    animation: fadeIn 0.4s ease-out 1.5s forwards;
+}
+
+/* ================= RESPONSIVE DESIGN ================= */
+@media (max-width: 880px) {
+    .grid-two {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 720px) {
+    .main-nav {
+        gap: 6px;
+    }
+
+    .nav-item {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+
+    .hospital-card {
+        min-width: 220px;
+        max-width: 220px;
+    }
+
+    .card-media {
+        height: 130px;
+    }
+
+    .slider-arrow {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand-text strong {
+        font-size: 16px;
+    }
+
+    .brand-text .tag {
+        font-size: 10px;
+    }
+
+    .main-nav {
+        display: none;
+    }
+
+    .panel {
+        padding: 16px;
+    }
+
+    .card {
+        padding: 16px;
+    }
+}
