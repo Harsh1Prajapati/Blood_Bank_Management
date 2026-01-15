@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{% block title %}LifeLink Blood Network{% endblock %}</title>
+
+  <!-- Font + Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <style>
+    :root {
+      --primary: #7E5FEF;
+      --primary-hover: #6244E8;
+      --danger: #e74c3c;
+      --text-dark: #222;
+      --bg: #f9f9ff;
+      --card-bg: #fff;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text-dark);
+      margin: 0;
+      padding: 0;
+      line-height: 1.5;
+    }
+
+    /* ---------- HEADER ---------- */
+    header {
+      background: linear-gradient(90deg, var(--primary), var(--primary-hover));
+      padding: 0.8rem 0;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #fff;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 1.25rem;
+      letter-spacing: 0.3px;
+    }
+
+    .brand-icon {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 8px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .main-nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 18px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .main-nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #fff;
+      transition: width 0.3s ease;
+    }
+
+    .main-nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Hide navbar on auth pages */
+    body.auth header, body.auth footer {
+      display: none;
+    }
+
+    /* ---------- MAIN LAYOUT ---------- */
+    main.container {
+      max-width: 1150px;
+      margin: 2rem auto;
+      padding: 0 20px;
+    }
+
+    /* ---------- FORM CARD ---------- */
+    .form-card {
+      background: var(--card-bg);
+      padding: 2.5rem 2rem;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      max-width: 480px;
+      margin: 5rem auto;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .form-card h2 {
+      text-align: center;
+      color: var(--primary-hover);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .form-card p.muted {
+      text-align: center;
+      color: #777;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+    }
+
+    .form-row label {
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      color: #444;
+    }
+
+    .form-row input,
+    .form-row select {
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      outline: none;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    .form-row input:focus,
+    .form-row select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(126, 95, 239, 0.15);
+    }
+
+    .btn-primary {
+  background: linear-gradient(90deg, var(--primary), var(--primary-hover));
+  color: #fff;
+  border: none;
+  border-radius: 8px;      /* Match btn-delete */
+  padding: 8px 14px;       /* Match btn-delete */
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 500;        /* Match btn-delete */
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+
+    .btn-delete {
+      background: var(--danger);
+      color: #fff;
+      border-radius: 8px;
+      padding: 8px 14px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+    }
+
+    .btn-delete:hover { opacity: 0.9; }
+
+    /* ---------- DASHBOARD SECTIONS ---------- */
+    .dashboard-section {
+      background: #fff;
+      padding: 1.5rem 2rem;
+      border-radius: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+      margin-top: 1.5rem;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .section-title {
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .table-container { overflow-x: auto; }
+
+    table.admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 14px rgba(0, 0, 0, 0.05);
+      font-size: 0.9rem;
+    }
+
+    .admin-table th {
+      background: linear-gradient(90deg, var(--primary), var(--primary-hover));
+      color: #fff;
+      padding: 12px 14px;
+      text-align: left;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .admin-table td {
+      background: #fff;
+      padding: 10px 14px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .admin-table tr:hover td {
+      background: #f9f8ff;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      text-align: center;
+      color: #777;
+      padding: 1.2rem 1rem;
+      font-size: 0.9rem;
+      background: #f9f9ff;
+      margin-top: 3rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) {
+      .header-inner { flex-direction: column; gap: 0.6rem; }
+      .main-nav a { margin: 6px 8px; display: inline-block; }
+      main.container { margin: 1rem auto; }
+      .form-card { margin: 3rem auto; padding: 2rem 1.2rem; }
+    }
+
+    .brand-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.brand-subtitle {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.9);
+  margin-top: 2px;
+}
+
+  </style>
+</head>
+
+{% set current_page = request.endpoint %}
+<body class="{% if 'login' in current_page or 'signup' in current_page %}auth{% endif %}">
+
+<header>
+  <div class="header-inner">
+    <a href="{{ url_for('index') }}" class="brand-link">
+  <div class="brand-icon">
+    <i class="fa-solid fa-hand-holding-droplet" style="color: #d14a3b;"></i>
+  </div>
+  <div class="brand-text">
+    <span class="brand-name">LifeLink</span>
+    <span class="brand-subtitle" style="color: #e74c3c;">Blood Network</span>
+  </div>
+</a>
+
+    <nav class="main-nav">
+      {% if session.get('role') == 'admin' %}
+        <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('admin_users') }}">Users</a>
+        <a href="{{ url_for('admin_donors') }}">Donors</a>
+        <a href="{{ url_for('admin_requests') }}">Requests</a>
+        <a href="{{ url_for('admin_hospital_requests') }}">Hospitals</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+      {% elif session.get('role') == 'user' %}
+        <a href="{{ url_for('user_dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('donor_form') }}">Become Donor</a>
+        <a href="{{ url_for('request_type') }}">Request Blood</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+      {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('signup') }}">Sign Up</a>
+      {% endif %}
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  {% block content %}{% endblock %}
+</main>
+
+<footer>
+  © 2025 LifeLink Blood Network — Donate • Save Lives
+</footer>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

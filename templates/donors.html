@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Donors - LifeLink{% endblock %}
+{% block content %}
+<div class="dashboard-section">
+  <h2 class="section-title"><i class="fa-solid fa-hand-holding-droplet"></i> Blood Donors</h2>
+
+  {% for grp, donors in donors_by_group.items() %}
+  <h3 class="blood-header">{{ grp }}</h3>
+  {% if donors %}
+  <div class="table-container">
+    <table class="admin-table">
+      <thead>
+        <tr><th>Name</th><th>Gender</th><th>Blood Group</th><th>Contact</th>
+            <th>Location</th><th>Status</th><th>Actions</th></tr>
+      </thead>
+      <tbody>
+        {% for d in donors %}
+        <tr>
+          <td>{{ d[1] }}</td><td>{{ d[2] }}</td><td>{{ d[3] }}</td><td>{{ d[4] }}</td><td>{{ d[5] }}</td>
+          <td>{% if d[6]==1 %}✅ Approved{% else %}⏳ Pending{% endif %}</td>
+          <td>
+            {% if d[6]==0 %}
+              <a href="{{ url_for('approve_item', table='donors', item_id=d[0]) }}" class="btn-primary">Approve</a>
+            {% endif %}
+            <a href="{{ url_for('delete_item', table='donors', item_id=d[0]) }}" class="btn-delete"
+               onclick="return confirm('Delete donor?');">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+    <p>No donors in this group.</p>
+  {% endif %}
+  {% endfor %}
+</div>
+{% endblock %}

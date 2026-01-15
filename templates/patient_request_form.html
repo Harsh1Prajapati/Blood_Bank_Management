@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Patient Blood Request - LifeLink{% endblock %}
+
+{% block content %}
+<div class="form-card">
+    <h2>Patient Blood Request</h2>
+    <p class="muted">Enter patient details and select preferred hospital.</p>
+
+    <form method="POST">
+        <div class="form-row">
+            <label for="patient_name">Patient Name</label>
+            <input id="patient_name" name="patient_name" required type="text" placeholder="Patient full name">
+        </div>
+
+        <div class="form-row">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+                <option disabled selected value="">Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label for="blood_group">Blood Group</label>
+            <select id="blood_group" name="blood_group" required>
+                <option disabled selected value="">Select blood group</option>
+                <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+                <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label for="location">Location</label>
+            <select id="location" name="location" required onchange="updateHospitals()">
+                <option disabled selected value="">Select location</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Thane">Thane</option>
+                <option value="Navi Mumbai">Navi Mumbai</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label for="hospital">Select Hospital</label>
+            <select id="hospital" name="hospital" required>
+                <option disabled selected value="">Select hospital</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label for="contact_info">Contact Info</label>
+            <input id="contact_info" name="contact_info" required type="text" placeholder="Phone / Email">
+        </div>
+
+        <div class="form-row">
+            <button class="btn-primary" type="submit">Submit Request</button>
+        </div>
+    </form>
+</div>
+
+<script>
+const hospitals = {
+    "Mumbai": ["Kokilaben Dhirubhai Ambani Hospital", "Fortis Nanavati", "Lilavati Hospital", "Bombay Hospital", "P D Hinduja Hospital", "Breach Candy Hospital"],
+    "Thane": ["Hiranandani Hospital", "Rajhans Hospital"],
+    "Navi Mumbai": ["MGM Hospital", "Lunavale Hospital"]
+};
+
+function updateHospitals() {
+    const loc = document.getElementById('location').value;
+    const hospitalSelect = document.getElementById('hospital');
+    hospitalSelect.innerHTML = '<option disabled selected value="">Select hospital</option>';
+    if (hospitals[loc]) {
+        hospitals[loc].forEach(h => {
+            const opt = document.createElement('option');
+            opt.value = h;
+            opt.text = h;
+            hospitalSelect.add(opt);
+        });
+    }
+}
+</script>
+{% endblock %}

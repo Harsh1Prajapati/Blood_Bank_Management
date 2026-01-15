@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Login - LifeLink{% endblock %}
+{% block content %}
+<div class="form-card">
+  <h2>Welcome back</h2>
+  <p class="muted">Login to your account to access the dashboard.</p>
+
+  <form method="POST" action="{{ url_for('login') }}">
+    <div class="form-row">
+      <label for="username">Username</label>
+      <input id="username" name="username" required type="text" placeholder="Enter username">
+    </div>
+
+    <div class="form-row">
+      <label for="password">Password</label>
+      <input id="password" name="password" required type="password" placeholder="Enter password">
+    </div>
+
+    <div class="form-row">
+      <button class="btn-primary" type="submit">Login</button>
+    </div>
+    <p class="center small">New here? <a href="{{ url_for('signup') }}">Create account</a></p>
+  </form>
+</div>
+{% endblock %}

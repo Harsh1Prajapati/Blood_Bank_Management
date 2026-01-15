@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Patient Requests - LifeLink{% endblock %}
+{% block content %}
+<div class="dashboard-section">
+  <h2 class="section-title"><i class="fa-solid fa-droplet"></i> Patient Blood Requests</h2>
+
+  {% if requests %}
+  <div class="table-container">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>ID</th><th>Patient Name</th><th>Gender</th><th>Blood Group</th>
+          <th>Contact</th><th>Location</th><th>Status</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in requests %}
+        <tr>
+          <td>{{ r[0] }}</td>
+          <td>{{ r[1] }}</td>
+          <td>{{ r[2] }}</td>
+          <td>{{ r[3] }}</td>
+          <td>{{ r[4] }}</td>
+          <td>{{ r[5] }}</td>
+          <td>{% if r[6]==1 %}✅ Approved{% else %}⏳ Pending{% endif %}</td>
+          <td>
+            {% if r[6]==0 %}
+              <a href="{{ url_for('approve_item', table='requests', item_id=r[0]) }}" class="btn-primary">Approve</a>
+            {% endif %}
+            <a href="{{ url_for('delete_item', table='requests', item_id=r[0]) }}" class="btn-delete"
+               onclick="return confirm('Delete request?');">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+    <p class="no-data">No patient requests found.</p>
+  {% endif %}
+</div>
+{% endblock %}

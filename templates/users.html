@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Users - LifeLink{% endblock %}
+{% block content %}
+<div class="dashboard-section">
+  <h2 class="section-title"><i class="fa-solid fa-users"></i> Registered Users</h2>
+
+  {% if users %}
+  <div class="table-container">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for u in users %}
+        <tr>
+          <td>{{ u[1] }}</td>
+          <td>{{ u[3] }}</td>
+          <td>{{ u[4] }}</td>
+          <td>
+            {% if u[1] != 'admin' %}
+            <a class="btn-delete"
+               href="{{ url_for('delete_item', table='users', item_id=u[0]) }}"
+               onclick="return confirm('Delete user?');">
+              <i class="fa-solid fa-trash"></i> Delete
+            </a>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+    <p class="no-data">No users registered yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

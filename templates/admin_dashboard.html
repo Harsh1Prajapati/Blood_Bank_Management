@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard - LifeLink{% endblock %}
+
+{% block content %}
+<div class="panel">
+    <h2><i class="fa-solid fa-user-shield"></i> Admin Dashboard</h2>
+    <p class="muted">Manage users, donors, blood requests, and notices.</p>
+
+    <div class="grid-two">
+        <a href="{{ url_for('admin_users') }}" class="card-link" style="justify-content:center;">
+            <i class="fa-solid fa-users"></i> Manage Users
+        </a>
+        <a href="{{ url_for('admin_donors') }}" class="card-link" style="justify-content:center;">
+            <i class="fa-solid fa-hand-holding-droplet"></i> Manage Donors
+        </a>
+        <a href="{{ url_for('admin_requests') }}" class="card-link" style="justify-content:center;">
+            <i class="fa-solid fa-droplet"></i> View Requests
+        </a>
+        <a href="{{ url_for('admin_notices') }}" class="card-link" style="justify-content:center;">
+            <i class="fa-solid fa-bullhorn"></i> Manage Notices
+        </a>
+    </div>
+
+    <p class="muted" style="margin-top:20px;">Welcome, <strong>{{ session['username'] }}</strong>! Use the cards above to manage your platform data.</p>
+</div>
+{% endblock %}

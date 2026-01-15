@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Sign Up - LifeLink{% endblock %}
+{% block content %}
+<div class="form-card">
+  <h2>Create account</h2>
+  <p class="muted">Join LifeLink to request or donate blood.</p>
+
+  <form method="POST" action="{{ url_for('signup') }}">
+    <div class="form-row"><label for="username">Username</label><input id="username" name="username" required type="text"></div>
+    <div class="form-row"><label for="password">Password</label><input id="password" name="password" required type="password"></div>
+    <div class="form-row"><label for="email">Email</label><input id="email" name="email" required type="email"></div>
+    <div class="form-row"><label for="phone">Phone</label><input id="phone" name="phone" required type="tel"></div>
+
+    <div class="form-row"><button class="btn-primary" type="submit">Sign Up</button></div>
+    <p class="center small">Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+  </form>
+</div>
+{% endblock %}

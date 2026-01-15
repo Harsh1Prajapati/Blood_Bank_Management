@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Select Request Type - LifeLink{% endblock %}
+
+{% block content %}
+<div class="form-card">
+    <h2>Request Blood</h2>
+    <p class="muted">Select whether this request is for a patient or hospital.</p>
+
+    <div class="form-row">
+        <a href="{{ url_for('patient_request_form') }}" class="btn-primary btn-block">Patient Blood Request</a>
+    </div>
+
+    <div class="form-row">
+        <a href="{{ url_for('hospital_request_form') }}" class="btn-primary btn-block">Hospital Blood Request</a>
+    </div>
+</div>
+{% endblock %}
