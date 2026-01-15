@@ -1,4 +1,4 @@
-🩸 LifeFlow – Blood Bank Management System
+🩸 **BLOOD BANK MANAGEMENT SYSTEM**
 
 LifeFlow is a full-stack Blood Bank Management System designed to streamline the process of blood donation, hospital coordination, and patient blood requests. The system offers a secure and user-friendly platform for donors, patients, hospitals, and administrators.
 
